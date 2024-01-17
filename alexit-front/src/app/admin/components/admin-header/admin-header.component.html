@@ -1,0 +1,9 @@
+<header class="admin-header">
+    <nav class="admin-navbar">
+        <div>Go to website</div>
+        <div class="logged-in">
+            <strong>{{!user ? 'undefined' : user.username}}</strong>
+            <button type="button" (click)="logout()">Logout</button>
+        </div>
+    </nav>
+</header>

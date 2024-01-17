@@ -1,0 +1,47 @@
+<table class="zui-table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Parent</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (category of categories; track $index) {
+        <tr>
+            @if (!editMode) {
+            <td><img #img [src]="category.image" alt="..." width="50" height="50"></td>
+            <td>{{category.name}}</td>
+            <td>{{category.parent.name}}</td>
+            <td>{{category.description}}</td>
+            <td>
+                <button type="button" (click)="emitOnCategoryDelete(category._id)">Delete</button>
+            </td>
+            }@else {
+            <td><img [src]="category.image" alt="..." width="60" height="60"></td>
+            <td>
+                <textarea #name [(ngModel)]="category.name"></textarea>
+            </td>
+            <td>
+                <select #parent_id>
+                    <option [value]="category.parent._id">{{category.parent.name}}</option>
+                    @for (c of (categories | ptIf); track $index) {
+                    <option [value]="c._id">{{c.name}}</option>
+                    }
+                </select>
+            </td>
+            <td class="textarea-td">
+                <textarea #description [(ngModel)]="category.description" cols="95"></textarea>
+            </td>
+            <td>
+                <button type="button"
+                    (click)="emitOnCategoryUpdate(category._id, name.value, parent_id.value, description.value)">Update</button>
+            </td>
+            }
+        </tr>
+        }
+
+    </tbody>
+</table>

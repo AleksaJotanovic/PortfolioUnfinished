@@ -1,0 +1,17 @@
+<div class="sidebar">
+    <div>SHOP LOGO</div>
+    <div class="sidebar-links">
+        <ul>
+            <li><a routerLink="/admin">Dashboard</a></li>
+            <li><a routerLink="/admin/products">Inventory</a></li>
+            <li><a routerLink="/admin/add-product">Add New Product</a></li>
+            <li><a routerLink="/admin/categories">Categories</a></li>
+            <li><a routerLink="/admin/orders">Orders</a></li>
+            @if (userAllowed.roleName === 'Admin') {
+            <li><a routerLink="/admin/users">Users</a></li>
+            <li><a routerLink="/admin/sales">Sales</a></li>
+            <li><a routerLink="/admin/configuration">Configuration</a></li>
+            }
+        </ul>
+    </div>
+</div>

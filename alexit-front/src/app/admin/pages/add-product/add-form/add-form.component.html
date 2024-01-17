@@ -1,0 +1,82 @@
+<div class="add-product-body">
+    <div class="add-product-form">
+        <form [formGroup]="productForm" (ngSubmit)="emitProductAdding(productImages)">
+            <div class="col">
+                <label>Name:</label>
+                <input type="text" formControlName="name">
+            </div>
+            <div class="col">
+                <label>Manufacturer:</label>
+                <input type="text" formControlName="manufacturer">
+            </div>
+            <div class="col">
+                <label>UOM:</label>
+                <input type="text" formControlName="uom">
+            </div>
+            <div class="col">
+                <label>SKU:</label>
+                <input type="text" formControlName="sku">
+            </div>
+            <div class="col">
+                <label>Purchase price:</label>
+                <input type="number" formControlName="purchasePrice">
+            </div>
+            <div class="col">
+                <label>Margin:</label>
+                <input type="number" formControlName="margin">
+            </div>
+            <div class="col">
+                <label>Choose Category:</label>
+                <select formControlName="category_id">
+                    <option value="" disabled selected hidden>--choose category--</option>
+                    @for (category of (categories | ctgIf); track $index) {
+                    <option [ngValue]="category._id">{{category.name}}
+                    </option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label>Count in stock: </label>
+                <input type="number" formControlName="inStock">
+            </div>
+            <div class="col">
+                <label>Weight: </label>
+                <input type="number" formControlName="weight">
+            </div>
+            <div class="col">
+                <label>Garantee: </label>
+                <input type="number" formControlName="garantee">
+            </div>
+            <div class="specifications-arr">
+                <h3>Specifications:</h3>
+                <div formArrayName="specifications">
+                    @for (specification of getSpecifications().controls; track $index) {
+                    <div [formGroupName]="$index">
+                        <input type="text" formControlName="spec">
+                        <input type="text" formControlName="value">
+                        @if (getSpecifications().length > 1) {
+                        <button type="button" (click)="removeSpecification($index)">-</button>
+                        }
+                    </div>
+                    }
+                </div>
+                <button type="button" (click)="newSpecification()">+</button>
+            </div>
+            <div class="col">
+                <label>Upload Product Images: </label>
+                <input #productImages type="file" multiple>
+            </div>
+            <div class="col">
+                <h3>Publish: </h3>
+                <label for="published1">
+                    <input type="radio" formControlName="published" id="published1" [value]="true">
+                    Yes</label>
+                <label for="published2">
+                    <input type="radio" formControlName="published" id="published2" [value]="false">
+                    No</label>
+            </div>
+            <button type="submit">Save In Stock</button>
+            <button type="button">Cancel</button>
+        </form>
+    </div>
+</div>

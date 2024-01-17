@@ -1,0 +1,6 @@
+main {
+    border: 2px solid black;
+    width: 100%;
+    min-height: fit-content;
+    max-height: fit-content;
+}
